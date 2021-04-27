@@ -73,26 +73,22 @@
         <h1>Hello World</h1>
 
         
-        <h2><code>hello.ml</code></h2>
+        <h2><code>main.ml</code></h2>
         <table class="explanation_code">
             
             <tr>
                 <td class="explanation">
-                    There&apos;s no main function in OCaml, rather statements that can have side effects (here printing to stdout).
+                    ...
                 </td>
                 <td class="code">
-                    <pre><code class="ocaml">(* this is a comment *)
-print_endline &quot;hello world&quot;
-</code></pre>
-                </td>
-            </tr>
-            
-            <tr>
-                <td class="explanation">
-                    A more idiomatic way to write this is to enforce that the code returns nothing, or in OCaml term that it returns the &quot;unit&quot; symbol `()`.
-                </td>
-                <td class="code">
-                    <pre><code class="ocaml">let () = print_endline &quot;hello world&quot;</code></pre>
+                    <pre><code class="ocaml">open Core
+
+let () = 
+  let a = [1; 2; 3] in
+  let b = a @ [4] in 
+  let c = 0 :: b in 
+  List.iter c ~f:(fun i -&gt; printf &quot;%d\n&quot; i)
+  </code></pre>
                 </td>
             </tr>
             
@@ -103,13 +99,10 @@ print_endline &quot;hello world&quot;
             
             <tr>
                 <td class="explanation">
-                    You can compile your code with the OCaml compiler `ocamlc`, similar to C programs.
+                    ...
                 </td>
                 <td class="code">
-                    <pre><code class="console">$ ocamlc -o your_program hello.ml
-$ ./your_program
-hello world
-hello world</code></pre>
+                    <pre><code class="console">$ dune exec ./main.exe</code></pre>
                 </td>
             </tr>
             
