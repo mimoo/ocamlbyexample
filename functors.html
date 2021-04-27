@@ -97,7 +97,14 @@
                     ...
                 </td>
                 <td class="code">
-                    <pre><code class="ocaml">open Base
+                    <pre><code class="ocaml">open Core
+
+module type Thing = sig
+  type t
+  val a : t
+  val b : t -&gt; string 
+end
+
 </code></pre>
                 </td>
             </tr>
@@ -112,7 +119,14 @@
                     
                 </td>
                 <td class="code">
-                    <pre><code class="ocaml">open Base
+                    <pre><code class="ocaml">open Core
+
+module type Thing = sig
+  type t
+  val a : t
+  val b : t -&gt; string 
+end
+
 </code></pre>
                 </td>
             </tr>
