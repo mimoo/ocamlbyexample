@@ -94,7 +94,7 @@
             
             <tr>
                 <td class="explanation">
-                    ...
+                    Utop is a universal interactive toplevel for OCaml.
                 </td>
                 <td class="code">
                     <pre><code class="console">$ opam install utop</code></pre>
@@ -108,22 +108,26 @@
             
             <tr>
                 <td class="explanation">
-                    ...
+                    You can use it to interatively experiment with code, load libraries and debug modules.
                 </td>
                 <td class="code">
-                    <pre><code class="console">utop # let add_one i = i + 1;;
+                    <pre><code class="console">$ utop
+
+utop # let add_one i = i + 1;;
 val add_one : int -&gt; int = &lt;fun&gt;
-</code></pre>
-                </td>
-            </tr>
-            
-            <tr>
-                <td class="explanation">
-                    ...
-                </td>
-                <td class="code">
-                    <pre><code class="console">utop # add_one 1;;
-- : int = 2</code></pre>
+─( 17:14:39 )─&lt; command 1 &gt;─────
+utop # add_one 1;;
+- : int = 2
+─( 17:14:58 )─&lt; command 2 &gt;────
+utop #
+
+$ dune utop src/lib/my_module
+
+utop # open My_module;;
+─( 17:13:43 )─&lt; command 1 &gt;──
+utop # My_module.Toolkit.(do_stuff (from_int 3));;
+- : float = 259200000.
+─( 17:14:58 )─&lt; command 2 &gt;────</code></pre>
                 </td>
             </tr>
             
