@@ -133,7 +133,7 @@
                     
                     <tr>
                         <td class="explanation">
-                            Install **opam**, the version management / package manager of OCaml. If you don&apos;t trust me, check the [official webpage](https://opam.ocaml.org/doc/Install.html).
+                            Install **opam**, the version management and package manager of OCaml. You can also consult the [official opam webpage](https://opam.ocaml.org/doc/Install.html).
                         </td>
                         <td class="code">
                             <pre><code class="console">$ sh &lt;(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)</code></pre>
@@ -145,7 +145,9 @@
                             In all of these examples, you will need to **replace** the standard library of OCaml with the well-accepted standard library replacement of Janestreet: **`Core`**. To consult the documentation of any packages (including `Core`), refer to the [ocaml docs](https://docs.ocaml.pro/).
                         </td>
                         <td class="code">
-                            <pre><code class="console">$ opam install base core core_kernel</code></pre>
+                            <pre><code class="console">...
+$ opam install core
+...</code></pre>
                         </td>
                     </tr>
                     
