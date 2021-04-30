@@ -127,7 +127,7 @@
 
             <div class="container">
 
-                <h1>Records</h1>
+                <h1>Error Handling</h1>
 
                 
                 <h2><code>main.ml</code></h2>
@@ -139,22 +139,78 @@
                         </td>
                         <td class="code">
                             <pre><code class="ocaml">open Core
-
-type person = { name: string ; age: int ; human : bool }
-
-let david = { name = &quot;david&quot; ; age = 32 ; human = false }
-
-let mary = { david with name = &quot;mary&quot; }
-
-let toggle_human (p : person) = 
-  { p with human = not p.human }
-
-let () = 
-  let david&apos; = toggle_human david in
-  if david&apos;.human then
-    print_endline &quot;david is human&quot;
+</code></pre>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="explanation">
+                            Similarly to the `&apos;a option` variant type, the `(&apos;a, &apos;b) result` variant type can be used to return some value of some type, or some error of some type (here, a `string`).
+                        </td>
+                        <td class="code">
+                            <pre><code class="ocaml">let can_error i =
+  if i &gt;= 0 then 
+    Ok i
   else
-    print_endline &quot;david is not human&quot;</code></pre>
+    Error &quot;you gave me a negative int&quot;
+
+let () =
+  let args = Sys.get_argv () in 
+  match args.(1) with 
+  | &quot;result&quot; -&gt; (</code></pre>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="explanation">
+                            `match` can be used to sort through the tags of the `result` variant type.
+                        </td>
+                        <td class="code">
+                            <pre><code class="ocaml">    let res = can_error (-1) in
+    match res with 
+    | Ok i -&gt; printf &quot;success: %d\n&quot; i 
+    | Error s -&gt; printf &quot;error: %s\n&quot; s
+  )</code></pre>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="explanation">
+                            `failwith` can be used to raise an exception.
+                        </td>
+                        <td class="code">
+                            <pre><code class="ocaml">  | &quot;failwith&quot; -&gt; failwith &quot;some error message&quot;
+  | &quot;exn&quot; -&gt; </code></pre>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="explanation">
+                            Exceptions can be crafted and raised manually by declaring custom `&apos;a exn` types (here, `Foo`) and throwing them using the `raise` function.
+                        </td>
+                        <td class="code">
+                            <pre><code class="ocaml">    let exception Foo of string in
+    raise (Foo &quot;some other error message&quot;)</code></pre>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="explanation">
+                            
+                        </td>
+                        <td class="code">
+                            <pre><code class="ocaml">  | _ -&gt; print_endline &quot;argument not recognized&quot;
+</code></pre>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="explanation">
+                            Note that any code that comes after a raised exception will not get executed.
+                        </td>
+                        <td class="code">
+                            <pre><code class="ocaml">let () =
+  print_endline &quot;this might not get executed&quot;</code></pre>
                         </td>
                     </tr>
                     
@@ -168,7 +224,32 @@ let () =
                             
                         </td>
                         <td class="code">
-                            <pre><code class="console">$ dune exec ./main.ml</code></pre>
+                            <pre><code class="console">$ dune exec ./main.exe -- result
+error: you gave me a negative int
+this might not get executed
+
+$ dune exec ./main.exe 
+Uncaught exception:
+  
+  (Invalid_argument &quot;index out of bounds&quot;)
+
+$ dune exe ./main.exe -- failwith
+Uncaught exception:
+  
+  (Failure &quot;some error message&quot;)
+
+Raised at Stdlib.failwith in file &quot;stdlib.ml&quot;, line 29, characters 17-33
+Called from Dune__exe__Main in file &quot;book/chapters/errors/main.ml&quot;, line 7, characters 18-47
+
+$ dune exe ./main.exe -- exn
+Uncaught exception:
+  
+  Foo(&quot;some other error message&quot;)
+
+Raised at Dune__exe__Main in file &quot;book/chapters/errors/main.ml&quot;, line 21, characters 4-42
+
+$ dune exe ./main.exe -- some_arg
+argument not recognized</code></pre>
                         </td>
                     </tr>
                     
