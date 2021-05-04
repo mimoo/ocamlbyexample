@@ -91,33 +91,71 @@
 
             <ul>
                 
-                <li><a href="setup.html">Setup</a></li>
+                <h2>Language Basics</h2>
+                <ul>
+                    
+                    
+                    <li><a href="part1-setup.html">Setup</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-hello-world.html">Hello World</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-utop.html">Utop</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-tuples.html">Tuples</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-list.html">Lists</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-records.html">Records</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-match.html">Match</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-modules.html">Modules</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-errors.html">Error Handling</a></li>
+                    
+                    
+                    
+                    <li>Inline tests</li>
+                    
+                    
+                    
+                    <li><a href="part1-show.html">Show</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-bin_prot.html">bin_prot</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-functors.html">Functors</a></li>
+                    
+                    
+                </ul>
                 
-                <li><a href="hello-world.html">Hello World</a></li>
-                
-                <li><a href="utop.html">Utop</a></li>
-                
-                <li><a href="tuples.html">Tuples</a></li>
-                
-                <li><a href="list.html">Lists</a></li>
-                
-                <li><a href="records.html">Records</a></li>
-                
-                <li><a href="match.html">Match</a></li>
-                
-                <li><a href="modules.html">Modules</a></li>
-                
-                <li><a href="errors.html">Error Handling</a></li>
-                
-                <li><a href="inline-tests.html">Inline tests</a></li>
-                
-                <li><a href="show.html">Show</a></li>
-                
-                <li><a href="bin_prot.html">bin_prot</a></li>
-                
-                <li><a href="functors.html">Modules</a></li>
-                
-                <li><a href="dune.html">dune</a></li>
+                <h2>Project Management</h2>
+                <ul>
+                    
+                    
+                    <li><a href="part1-dune.html">dune</a></li>
+                    
+                    
+                </ul>
                 
             </ul>
 
@@ -127,30 +165,8 @@
 
             <div class="container">
 
-                <h1>Modules</h1>
+                <h1>Inline tests</h1>
 
-                
-                <h2><code>main.ml</code></h2>
-                <table class="explanation_code">
-                    
-                    <tr>
-                        <td class="explanation">
-                            ...
-                        </td>
-                        <td class="code">
-                            <pre><code class="ocaml">open Core
-
-module type Thing = sig
-  type t
-  val a : t
-  val b : t -&gt; string 
-end
-
-</code></pre>
-                        </td>
-                    </tr>
-                    
-                </table>
                 
                 <h2><code>main.ml</code></h2>
                 <table class="explanation_code">
@@ -160,15 +176,30 @@ end
                             
                         </td>
                         <td class="code">
-                            <pre><code class="ocaml">open Core
+                            <pre><code class="ocaml">let%test &quot;this will pass if true&quot; = true 
+let%test_unit &quot;this will pass if unit is returned&quot; = ()
+let%test_module &quot;name&quot; = (module &lt;module-expr&gt;) 
 
-module type Thing = sig
-  type t
-  val a : t
-  val b : t -&gt; string 
+(* taken from https://github.com/janestreet/ppx_inline_test *)
+let is_prime = &lt;magic&gt;
+
+let%test _ = is_prime 5
+let%test _ = is_prime 7
+let%test _ = not (is_prime 1)
+let%test _ = not (is_prime 8)
+//
+module Make(C : S) = struct
+  &lt;magic&gt;
+  let%test _ = &lt;some expression&gt;
 end
 
-</code></pre>
+module M = Make(Int)
+//
+let%test_module _ = (module struct
+    module UID = Unique_id.Int(struct end)
+
+    let%test _ = UID.create() &lt;&gt; UID.create()
+end)</code></pre>
                         </td>
                     </tr>
                     
@@ -182,7 +213,8 @@ end
                             
                         </td>
                         <td class="code">
-                            <pre><code class="console">$ dune exec ./main.exe</code></pre>
+                            <pre><code class="console">$ opam install ppx_inline_test
+$ dune exec ./main.exe</code></pre>
                         </td>
                     </tr>
                     

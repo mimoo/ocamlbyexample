@@ -91,33 +91,71 @@
 
             <ul>
                 
-                <li><a href="setup.html">Setup</a></li>
+                <h2>Language Basics</h2>
+                <ul>
+                    
+                    
+                    <li><a href="part1-setup.html">Setup</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-hello-world.html">Hello World</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-utop.html">Utop</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-tuples.html">Tuples</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-list.html">Lists</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-records.html">Records</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-match.html">Match</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-modules.html">Modules</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-errors.html">Error Handling</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-inline-tests.html">Inline tests</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-show.html">Show</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-bin_prot.html">bin_prot</a></li>
+                    
+                    
+                    
+                    <li>Functors</li>
+                    
+                    
+                </ul>
                 
-                <li><a href="hello-world.html">Hello World</a></li>
-                
-                <li><a href="utop.html">Utop</a></li>
-                
-                <li><a href="tuples.html">Tuples</a></li>
-                
-                <li><a href="list.html">Lists</a></li>
-                
-                <li><a href="records.html">Records</a></li>
-                
-                <li><a href="match.html">Match</a></li>
-                
-                <li><a href="modules.html">Modules</a></li>
-                
-                <li><a href="errors.html">Error Handling</a></li>
-                
-                <li><a href="inline-tests.html">Inline tests</a></li>
-                
-                <li><a href="show.html">Show</a></li>
-                
-                <li><a href="bin_prot.html">bin_prot</a></li>
-                
-                <li><a href="functors.html">Modules</a></li>
-                
-                <li><a href="dune.html">dune</a></li>
+                <h2>Project Management</h2>
+                <ul>
+                    
+                    
+                    <li><a href="part1-dune.html">dune</a></li>
+                    
+                    
+                </ul>
                 
             </ul>
 
@@ -127,7 +165,7 @@
 
             <div class="container">
 
-                <h1>Lists</h1>
+                <h1>Functors</h1>
 
                 
                 <h2><code>main.ml</code></h2>
@@ -135,12 +173,25 @@
                     
                     <tr>
                         <td class="explanation">
-                            Lists can hold any number of items of the same type.
+                            ...
                         </td>
                         <td class="code">
-                            <pre><code class="ocaml"></code></pre>
+                            <pre><code class="ocaml">open Core
+
+module type Thing = sig
+  type t
+  val a : t
+  val b : t -&gt; string 
+end
+
+module Make (Animal : Thing)</code></pre>
                         </td>
                     </tr>
+                    
+                </table>
+                
+                <h2><code>main.ml</code></h2>
+                <table class="explanation_code">
                     
                     <tr>
                         <td class="explanation">
@@ -149,20 +200,13 @@
                         <td class="code">
                             <pre><code class="ocaml">open Core
 
-let () = </code></pre>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="explanation">
-                            The items are separated by semicolons.
-                        </td>
-                        <td class="code">
-                            <pre><code class="ocaml">  let a = [1; 2; 3] in
-  let b = a @ [4] in 
-  let c = 0 :: b in 
-  List.iter c ~f:(fun i -&gt; printf &quot;%d\n&quot; i)
-  </code></pre>
+module type Thing = sig
+  type t
+  val a : t
+  val b : t -&gt; string 
+end
+
+module Make (Animal : Thing)</code></pre>
                         </td>
                     </tr>
                     
@@ -173,23 +217,10 @@ let () = </code></pre>
                     
                     <tr>
                         <td class="explanation">
-                            Items can be prepended and appended to lists
+                            
                         </td>
                         <td class="code">
-                            <pre><code class="console">$ dune exec ./main.exe
-0
-1</code></pre>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="explanation">
-                            Lists can be iterated over and displayed.
-                        </td>
-                        <td class="code">
-                            <pre><code class="console">2
-3
-4</code></pre>
+                            <pre><code class="console">$ dune exec ./main.exe</code></pre>
                         </td>
                     </tr>
                     

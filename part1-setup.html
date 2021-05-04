@@ -91,33 +91,71 @@
 
             <ul>
                 
-                <li><a href="setup.html">Setup</a></li>
+                <h2>Language Basics</h2>
+                <ul>
+                    
+                    
+                    <li>Setup</li>
+                    
+                    
+                    
+                    <li><a href="part1-hello-world.html">Hello World</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-utop.html">Utop</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-tuples.html">Tuples</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-list.html">Lists</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-records.html">Records</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-match.html">Match</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-modules.html">Modules</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-errors.html">Error Handling</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-inline-tests.html">Inline tests</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-show.html">Show</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-bin_prot.html">bin_prot</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-functors.html">Functors</a></li>
+                    
+                    
+                </ul>
                 
-                <li><a href="hello-world.html">Hello World</a></li>
-                
-                <li><a href="utop.html">Utop</a></li>
-                
-                <li><a href="tuples.html">Tuples</a></li>
-                
-                <li><a href="list.html">Lists</a></li>
-                
-                <li><a href="records.html">Records</a></li>
-                
-                <li><a href="match.html">Match</a></li>
-                
-                <li><a href="modules.html">Modules</a></li>
-                
-                <li><a href="errors.html">Error Handling</a></li>
-                
-                <li><a href="inline-tests.html">Inline tests</a></li>
-                
-                <li><a href="show.html">Show</a></li>
-                
-                <li><a href="bin_prot.html">bin_prot</a></li>
-                
-                <li><a href="functors.html">Modules</a></li>
-                
-                <li><a href="dune.html">dune</a></li>
+                <h2>Project Management</h2>
+                <ul>
+                    
+                    
+                    <li><a href="part1-dune.html">dune</a></li>
+                    
+                    
+                </ul>
                 
             </ul>
 
@@ -127,48 +165,29 @@
 
             <div class="container">
 
-                <h1>dune</h1>
+                <h1>Setup</h1>
 
                 
-                <h2><code>dune-project</code></h2>
+                <h2><code>console</code></h2>
                 <table class="explanation_code">
                     
                     <tr>
                         <td class="explanation">
-                            ...
+                            Install **opam**, the version management and package manager of OCaml. You can also consult the [official opam webpage](https://opam.ocaml.org/doc/Install.html).
                         </td>
                         <td class="code">
-                            <pre><code class="lisp">(lang dune 2.8)</code></pre>
+                            <pre><code class="console">$ sh &lt;(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+...</code></pre>
                         </td>
                     </tr>
                     
-                </table>
-                
-                <h2><code>dune</code></h2>
-                <table class="explanation_code">
-                    
                     <tr>
                         <td class="explanation">
-                            ...
+                            In all of these examples, you will need to **replace** the standard library of OCaml with the well-accepted standard library replacement of Janestreet: **`Core`**. To consult the documentation of any packages (including `Core`), refer to the [ocaml docs](https://docs.ocaml.pro/).
                         </td>
                         <td class="code">
-                            <pre><code class="lisp">(executable
- (name main)
- (libraries core))</code></pre>
-                        </td>
-                    </tr>
-                    
-                </table>
-                
-                <h2><code>.ocamlformat</code></h2>
-                <table class="explanation_code">
-                    
-                    <tr>
-                        <td class="explanation">
-                            You need an `.ocamlformat` file (that can be empty) at the root for `ocamlformat` to work.
-                        </td>
-                        <td class="code">
-                            <pre><code class="console"></code></pre>
+                            <pre><code class="console">$ opam install core
+...</code></pre>
                         </td>
                     </tr>
                     

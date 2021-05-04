@@ -91,33 +91,71 @@
 
             <ul>
                 
-                <li><a href="setup.html">Setup</a></li>
+                <h2>Language Basics</h2>
+                <ul>
+                    
+                    
+                    <li><a href="part1-setup.html">Setup</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-hello-world.html">Hello World</a></li>
+                    
+                    
+                    
+                    <li>Utop</li>
+                    
+                    
+                    
+                    <li><a href="part1-tuples.html">Tuples</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-list.html">Lists</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-records.html">Records</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-match.html">Match</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-modules.html">Modules</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-errors.html">Error Handling</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-inline-tests.html">Inline tests</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-show.html">Show</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-bin_prot.html">bin_prot</a></li>
+                    
+                    
+                    
+                    <li><a href="part1-functors.html">Functors</a></li>
+                    
+                    
+                </ul>
                 
-                <li><a href="hello-world.html">Hello World</a></li>
-                
-                <li><a href="utop.html">Utop</a></li>
-                
-                <li><a href="tuples.html">Tuples</a></li>
-                
-                <li><a href="list.html">Lists</a></li>
-                
-                <li><a href="records.html">Records</a></li>
-                
-                <li><a href="match.html">Match</a></li>
-                
-                <li><a href="modules.html">Modules</a></li>
-                
-                <li><a href="errors.html">Error Handling</a></li>
-                
-                <li><a href="inline-tests.html">Inline tests</a></li>
-                
-                <li><a href="show.html">Show</a></li>
-                
-                <li><a href="bin_prot.html">bin_prot</a></li>
-                
-                <li><a href="functors.html">Modules</a></li>
-                
-                <li><a href="dune.html">dune</a></li>
+                <h2>Project Management</h2>
+                <ul>
+                    
+                    
+                    <li><a href="part1-dune.html">dune</a></li>
+                    
+                    
+                </ul>
                 
             </ul>
 
@@ -127,46 +165,48 @@
 
             <div class="container">
 
-                <h1>Hello World</h1>
+                <h1>Utop</h1>
 
-                
-                <h2><code>hello.ml</code></h2>
-                <table class="explanation_code">
-                    
-                    <tr>
-                        <td class="explanation">
-                            There&apos;s no main function in OCaml, rather statements that can have side effects (here printing to stdout).
-                        </td>
-                        <td class="code">
-                            <pre><code class="ocaml">(* this is a comment *)
-print_endline &quot;hello world&quot;
-</code></pre>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="explanation">
-                            A more idiomatic way to write this is to enforce that the code returns nothing, or in OCaml term that it returns the &quot;unit&quot; symbol `()`.
-                        </td>
-                        <td class="code">
-                            <pre><code class="ocaml">let () = print_endline &quot;hello world&quot;</code></pre>
-                        </td>
-                    </tr>
-                    
-                </table>
                 
                 <h2><code>console</code></h2>
                 <table class="explanation_code">
                     
                     <tr>
                         <td class="explanation">
-                            You can compile your code with the OCaml compiler `ocamlc`, similar to C programs.
+                            Utop is a universal interactive toplevel for OCaml.
                         </td>
                         <td class="code">
-                            <pre><code class="console">$ ocamlc -o your_program hello.ml
-$ ./your_program
-hello world
-hello world</code></pre>
+                            <pre><code class="console">$ opam install utop</code></pre>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
+                <h2><code>utop</code></h2>
+                <table class="explanation_code">
+                    
+                    <tr>
+                        <td class="explanation">
+                            You can use it to interatively experiment with code, load libraries and debug modules.
+                        </td>
+                        <td class="code">
+                            <pre><code class="console">$ utop
+
+utop # let add_one i = i + 1;;
+val add_one : int -&gt; int = &lt;fun&gt;
+─( 17:14:39 )─&lt; command 1 &gt;─────
+utop # add_one 1;;
+- : int = 2
+─( 17:14:58 )─&lt; command 2 &gt;────
+utop #
+
+$ dune utop src/lib/my_module
+
+utop # open My_module;;
+─( 17:13:43 )─&lt; command 1 &gt;──
+utop # My_module.Toolkit.(do_stuff (from_int 3));;
+- : float = 259200000.
+─( 17:14:58 )─&lt; command 2 &gt;────</code></pre>
                         </td>
                     </tr>
                     
