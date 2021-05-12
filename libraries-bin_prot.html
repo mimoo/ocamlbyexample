@@ -234,6 +234,18 @@
 
                         
 
+                        <li>basics/array</li>
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
                         <li><a href="basics-records.html">Records</a></li>
 
                         
@@ -275,19 +287,6 @@
                         
 
                         
-
-                        
-
-                        
-                        
-
-                        
-
-                        <li>Functors</li>
-
-                        
-
-                        
                     </ul>
                     
                     <h2>Project Management</h2>
@@ -295,28 +294,12 @@
                         
 
                         
-                        
-                        
-                        
-                        
 
                         
 
                         
 
-                        <li><a href="basics-dune.html">dune</a></li>
-
-                        
-
-                        
-
-                        
-
-                        
-
-                        
-
-                        <li>part2/dune-release</li>
+                        <li><a href="build-dune.html">dune</a></li>
 
                         
 
@@ -328,7 +311,19 @@
 
                         
 
-                        <li>part2/opam-pin</li>
+                        <li>dune-release</li>
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li>opam pin</li>
 
                         
 
@@ -337,6 +332,30 @@
                     
                     <h2>Advanced Ocaml</h2>
                     <ul>
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li>functors</li>
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li>monads</li>
+
+                        
+
                         
                     </ul>
                     
@@ -350,7 +369,7 @@
 
                         
 
-                        <li>part1/show</li>
+                        <li><a href="libraries-show.html">Show</a></li>
 
                         
 
@@ -359,22 +378,27 @@
                         
 
                         
-
-                        
-
-                        <li>part1/bin_prot</li>
-
                         
 
                         
+
+                        <li>bin_prot</li>
 
                         
 
                         
 
                         
+                        
+                        
+                        
+                        
 
-                        <li><a href="part3-ctypes.html">Calling C programs</a></li>
+                        
+
+                        
+
+                        <li><a href="libraries-ctypes.html">Calling C programs</a></li>
 
                         
 
@@ -389,7 +413,7 @@
 
                 <div class="container">
 
-                    <h1>Functors</h1>
+                    <h1>bin_prot</h1>
 
                     
                     <table class="explanation_code">
@@ -407,40 +431,22 @@
                             <td class="code">
                                 <pre><code class="ocaml">open Core
 
-module type Thing = sig
-  type t
-  val a : t
-  val b : t -&gt; string 
+module Thing = struct
+  type t =
+  | No_arg
+  | One_arg of string
+  | Record_arg of { num : int } [@@deriving bin_io, show]
 end
 
-module Make (Animal : Thing)</code></pre>
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    
-                    <table class="explanation_code">
-                        <tr>
-                            <td class="explanation"></td>
-                            <td class="filename">
-                                <h2><code>main.ml</code></h2>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                
-                            </td>
-                            <td class="code">
-                                <pre><code class="ocaml">open Core
-
-module type Thing = sig
-  type t
-  val a : t
-  val b : t -&gt; string 
-end
-
-module Make (Animal : Thing)</code></pre>
+let () = 
+  let some = Thing.One_arg &quot;hello&quot; in
+  let buf = Bin_prot.Common.create_buf 50 in
+  let pos = Thing.bin_write_t buf ~pos:0 some in 
+  let pos&apos; = ref 0 in
+  let some&apos; = Thing.bin_read_t buf ~pos_ref:pos&apos; in 
+  printf &quot;%s =?= %s\n&quot; (Thing.show some) (Thing.show some&apos;);
+  printf &quot;%d =?= %d\n&quot; pos !pos&apos;
+</code></pre>
                             </td>
                         </tr>
                         
@@ -456,7 +462,7 @@ module Make (Animal : Thing)</code></pre>
                         
                         <tr>
                             <td class="explanation">
-                                
+                                ...
                             </td>
                             <td class="code">
                                 <pre><code class="console">$ dune exec ./main.exe</code></pre>
@@ -468,7 +474,7 @@ module Make (Animal : Thing)</code></pre>
 
                     <div style="text-align:right">
                         
-                        next: <a href="basics-dune.html">dune</a>
+                        next: <a href="libraries-ctypes.html">Calling C programs</a>
                         
                     </div>
 

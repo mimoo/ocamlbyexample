@@ -234,6 +234,18 @@
 
                         
 
+                        <li>basics/array</li>
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
                         <li><a href="basics-records.html">Records</a></li>
 
                         
@@ -275,18 +287,6 @@
                         
 
                         
-
-                        
-
-                        
-
-                        
-
-                        <li><a href="basics-functors.html">Functors</a></li>
-
-                        
-
-                        
                     </ul>
                     
                     <h2>Project Management</h2>
@@ -299,7 +299,7 @@
 
                         
 
-                        <li><a href="basics-dune.html">dune</a></li>
+                        <li><a href="build-dune.html">dune</a></li>
 
                         
 
@@ -311,7 +311,7 @@
 
                         
 
-                        <li>part2/dune-release</li>
+                        <li>dune-release</li>
 
                         
 
@@ -323,7 +323,7 @@
 
                         
 
-                        <li>part2/opam-pin</li>
+                        <li>opam pin</li>
 
                         
 
@@ -332,6 +332,30 @@
                     
                     <h2>Advanced Ocaml</h2>
                     <ul>
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li>functors</li>
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li>monads</li>
+
+                        
+
                         
                     </ul>
                     
@@ -342,24 +366,11 @@
                         
 
                         
-
-                        
-
-                        <li>part1/show</li>
-
                         
 
                         
 
-                        
-
-                        
-
-                        
-
-                        <li>part1/bin_prot</li>
-
-                        
+                        <li>Show</li>
 
                         
 
@@ -367,10 +378,27 @@
 
                         
                         
+                        
+                        
+                        
 
                         
 
-                        <li>Calling C programs</li>
+                        
+
+                        <li><a href="libraries-bin_prot.html">bin_prot</a></li>
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        
+
+                        <li><a href="libraries-ctypes.html">Calling C programs</a></li>
 
                         
 
@@ -385,27 +413,8 @@
 
                 <div class="container">
 
-                    <h1>Calling C programs</h1>
+                    <h1>Show</h1>
 
-                    
-                    <table class="explanation_code">
-                        <tr>
-                            <td class="explanation"></td>
-                            <td class="filename">
-                                <h2><code>console</code></h2>
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="explanation">
-                                https://opam.ocaml.org/packages/ctypes/
-                            </td>
-                            <td class="code">
-                                <pre><code class="lisp">$ opam install ctypes ctypes-foreign</code></pre>
-                            </td>
-                        </tr>
-                        
-                    </table>
                     
                     <table class="explanation_code">
                         <tr>
@@ -417,14 +426,61 @@
                         
                         <tr>
                             <td class="explanation">
-                                ...
+                                
                             </td>
                             <td class="code">
-                                <pre><code class="ocaml">let sigemptyset = foreign &quot;sigemptyset&quot; (ptr sigset_t @-&gt; returning int)
-let sigfillset = foreign &quot;sigfillset&quot; (ptr sigset_t @-&gt; returning int)
-let sigaddset = foreign &quot;sigaddset&quot; (ptr sigset_t @-&gt; int @-&gt; returning int)
-let sigdelset = foreign &quot;sigdelset&quot; (ptr sigset_t @-&gt; int @-&gt; returning int)
-let sigismember = foreign &quot;sigismember&quot; (ptr sigset_t @-&gt; int @-&gt; returning int)</code></pre>
+                                <pre><code class="ocaml">open Core
+
+type person = { name: string ; age: int ; human : bool }
+[@@deriving show]
+
+let () =
+  let human_one = { name = &quot;david&quot; ; age = 32 ; human = false } in
+  printf &quot;%s\n&quot; (show_person human_one)</code></pre>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                    <table class="explanation_code">
+                        <tr>
+                            <td class="explanation"></td>
+                            <td class="filename">
+                                <h2><code>dune</code></h2>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                
+                            </td>
+                            <td class="code">
+                                <pre><code class="lisp">(executable
+ (name main)
+ (libraries core)
+ (preprocess
+  (pps ppx_deriving.show)))</code></pre>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                    <table class="explanation_code">
+                        <tr>
+                            <td class="explanation"></td>
+                            <td class="filename">
+                                <h2><code>console</code></h2>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                
+                            </td>
+                            <td class="code">
+                                <pre><code class="console">$ opam install base ppx_deriving
+$ dune exec ./main.exe
+{ Main.name = &quot;david&quot;; age = 32; human = false }</code></pre>
                             </td>
                         </tr>
                         
@@ -433,7 +489,7 @@ let sigismember = foreign &quot;sigismember&quot; (ptr sigset_t @-&gt; int @-&gt
 
                     <div style="text-align:right">
                         
-                        you've reached the end!
+                        next: <a href="libraries-bin_prot.html">bin_prot</a>
                         
                     </div>
 

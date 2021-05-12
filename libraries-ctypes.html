@@ -171,20 +171,15 @@
                         
 
                         
-                        
 
                         
 
-                        <li>Utop</li>
+                        <li><a href="basics-utop.html">Utop</a></li>
 
                         
 
                         
 
-                        
-                        
-                        
-                        
                         
 
                         
@@ -395,10 +390,11 @@
                         
 
                         
+                        
 
                         
 
-                        <li><a href="libraries-ctypes.html">Calling C programs</a></li>
+                        <li>Calling C programs</li>
 
                         
 
@@ -413,7 +409,7 @@
 
                 <div class="container">
 
-                    <h1>Utop</h1>
+                    <h1>Calling C programs</h1>
 
                     
                     <table class="explanation_code">
@@ -426,11 +422,10 @@
                         
                         <tr>
                             <td class="explanation">
-                                Utop is a universal interactive toplevel for OCaml.
+                                https://opam.ocaml.org/packages/ctypes/
                             </td>
                             <td class="code">
-                                <pre><code class="console">$ opam install utop
-$ utop</code></pre>
+                                <pre><code class="lisp">$ opam install ctypes ctypes-foreign</code></pre>
                             </td>
                         </tr>
                         
@@ -440,20 +435,20 @@ $ utop</code></pre>
                         <tr>
                             <td class="explanation"></td>
                             <td class="filename">
-                                <h2><code>utop</code></h2>
+                                <h2><code>main.ml</code></h2>
                             </td>
                         </tr>
                         
                         <tr>
                             <td class="explanation">
-                                You can use it to interatively experiment with code, load libraries and debug modules.
+                                ...
                             </td>
                             <td class="code">
-                                <pre><code class="ocaml">utop # let add_one i = i + 1;;
-val add_one : int -&gt; int = &lt;fun&gt;
-
-utop # add_one 1;;
-- : int = 2</code></pre>
+                                <pre><code class="ocaml">let sigemptyset = foreign &quot;sigemptyset&quot; (ptr sigset_t @-&gt; returning int)
+let sigfillset = foreign &quot;sigfillset&quot; (ptr sigset_t @-&gt; returning int)
+let sigaddset = foreign &quot;sigaddset&quot; (ptr sigset_t @-&gt; int @-&gt; returning int)
+let sigdelset = foreign &quot;sigdelset&quot; (ptr sigset_t @-&gt; int @-&gt; returning int)
+let sigismember = foreign &quot;sigismember&quot; (ptr sigset_t @-&gt; int @-&gt; returning int)</code></pre>
                             </td>
                         </tr>
                         
@@ -462,7 +457,7 @@ utop # add_one 1;;
 
                     <div style="text-align:right">
                         
-                        next: <a href="basics-values.html">Values</a>
+                        you've reached the end!
                         
                     </div>
 
