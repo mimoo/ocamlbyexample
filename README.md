@@ -1,5 +1,7 @@
 # Ocaml By Example
 
+**THIS REPO WAS MOVED TO https://github.com/o1-labs/ocamlbyexample**
+
 Learn the OCaml language, following a series of examples!
 
 You can visit the rendered course here: https://mimoo.github.io/ocamlbyexample/.
