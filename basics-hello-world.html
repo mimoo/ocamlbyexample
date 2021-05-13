@@ -410,7 +410,7 @@
 
                         
 
-                        <li>compiling to javascript</li>
+                        <li><a href="libraries-js_of_ocaml.html">Compiling to javascript</a></li>
 
                         
 
@@ -474,6 +474,50 @@ print_endline &quot;hello world&quot;
                                 <pre><code class="console">$ ocamlc -o your_program hello.ml
 $ ./your_program
 hello world
+hello world</code></pre>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                    <table class="explanation_code">
+                        <tr>
+                            <td class="explanation"></td>
+                            <td class="filename">
+                                <h2><code>hello2.ml</code></h2>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                We can use the `core` library we installed in the previous example by &quot;opening&quot; it. We can then use Core&apos;s [printf](https://ocaml.janestreet.com/ocaml-core/odoc/stdlib/Stdlib/Printf/index.html) function directly. Notice that arguments of a function are not surrounded by parenthesis or commas.
+                            </td>
+                            <td class="code">
+                                <pre><code class="ocaml">open Core
+
+let () = 
+  printf &quot;%s\n&quot; &quot;hello world&quot;</code></pre>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                    <table class="explanation_code">
+                        <tr>
+                            <td class="explanation"></td>
+                            <td class="filename">
+                                <h2><code>console2</code></h2>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="explanation">
+                                To compile code using external libraries, you can use `ocamlfind` which will do the work of finding and linking these libraries at compilation time.
+                            </td>
+                            <td class="code">
+                                <pre><code class="console">$ opam install ocamlfind
+$ ocamlfind opt -package core -thread -linkpkg hello2.ml
+$ ./a.out
 hello world</code></pre>
                             </td>
                         </tr>
